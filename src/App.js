@@ -1,8 +1,9 @@
-
+import Overview from './components/Overview';
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <Overview name="Mike" />
     </div>
   );
 }
