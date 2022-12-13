@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 
 class Overview extends Component {
   render() {
-    return <h1>This is {this.props.name}'s Overview</h1>
+    return (
+      <div>
+        {
+          this.props.tasks.map((task, index) => {
+            return <p key={index}>{"Task #" + (index + 1) + ": " + task}</p>
+          })
+        }
+      </div>  
+    )
   }
 }
 
