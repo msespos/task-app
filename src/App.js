@@ -2,8 +2,8 @@ import Overview from './components/Overview';
 import React, { Component } from 'react';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       taskArray: [],
@@ -12,10 +12,10 @@ class App extends Component {
 
     this.addTask = this.addTask.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  addTask() {
+  addTask(event) {
+    event.preventDefault();
     this.setState({
       taskArray: this.state.taskArray.concat(this.state.userInput)
     });
@@ -25,18 +25,20 @@ class App extends Component {
     this.setState({userInput: event.target.value});
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-  }
-
   render() {
+    const { taskArray, userInput } = this.state;
+
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" defaultValue={this.state.userInput} onChange={this.handleChange} />
+        <form>
+          <input 
+            type="text"
+            defaultValue={userInput}
+            onChange={this.handleChange}
+          />
           <button onClick={this.addTask}>Add Task</button>
         </form>
-        <Overview tasks={this.state.taskArray} />
+        <Overview tasks={taskArray} />
       </div>
     );
   };
