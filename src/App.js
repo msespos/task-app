@@ -23,7 +23,6 @@ class App extends Component {
   
   handleChange(event) {
     this.setState({userInput: event.target.value});
-    console.log(this.state.userInput);
   }
 
   handleSubmit(event) {
