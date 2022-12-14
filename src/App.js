@@ -11,6 +11,7 @@ class App extends Component {
       task: {
         text: "",
         id: uniqid(),
+        number: 1,
       }
     }
     this.addTask = this.addTask.bind(this);
@@ -24,8 +25,10 @@ class App extends Component {
       task: {
         text: "",
         id: uniqid(),
+        number: parseInt(this.state.task.number) + 1,
       }
     });
+    console.log(parseInt(this.state.task.number))
   }
   
   handleChange(event) {
@@ -33,6 +36,7 @@ class App extends Component {
       task: {
         text: event.target.value,
         id: this.state.task.id,
+        number: this.state.task.number,
       }
     });
   }
