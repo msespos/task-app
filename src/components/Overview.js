@@ -5,7 +5,7 @@ class Overview extends Component {
     return (
       <ul>
       {this.props.tasks.map((task, index) => {
-        return <li key={index}>{"Task #" + (index + 1) + ": " + task}</li>
+        return <li key={task.id}>{"Task #" + (index + 1) + ": " + task.text}</li>
       })}
       </ul>      
     )
