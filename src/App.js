@@ -11,10 +11,11 @@ class App extends Component {
       task: {
         text: "",
         id: uniqid(),
-        number: 1,
       }
     }
+
     this.addTask = this.addTask.bind(this);
+    this.deleteTask = this.deleteTask.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -25,18 +26,30 @@ class App extends Component {
       task: {
         text: "",
         id: uniqid(),
-        number: parseInt(this.state.task.number) + 1,
-      }
+      },
+      taskToRemove: {}
     });
-    console.log(parseInt(this.state.task.number))
   }
-  
+
+  removeObjectById(array, id) {
+    const objWithIdIndex = array.findIndex((obj) => obj.id === id);
+    if (objWithIdIndex > -1) {
+      array.splice(objWithIdIndex, 1);
+    }
+    return array;
+  }
+
+  deleteTask(id) {
+    this.setState({
+      tasks: this.removeObjectById(this.state.tasks, id)
+    })
+  }
+
   handleChange(event) {
     this.setState({
       task: {
         text: event.target.value,
         id: this.state.task.id,
-        number: this.state.task.number,
       }
     });
   }
@@ -54,7 +67,7 @@ class App extends Component {
           />
           <button type="submit">Add Task</button>
         </form>
-        <Overview tasks={tasks} />
+        <Overview tasks={tasks} deleteTask={this.deleteTask} />
       </div>
     );
   };
